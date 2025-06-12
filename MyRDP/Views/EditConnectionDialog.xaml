@@ -1,0 +1,24 @@
+<ContentDialog
+    x:Class="MyRDP.Views.EditConnectionDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Edit Connection"
+    PrimaryButtonText="Save"
+    CloseButtonText="Cancel">
+
+    <StackPanel>
+        <TextBox Header="Name" Text="{x:Bind Connection.Name, Mode=TwoWay}"/>
+        <TextBox Header="Address" Text="{x:Bind Connection.Address, Mode=TwoWay}"/>
+        <TextBox Header="Gateway" Text="{x:Bind Connection.Gateway, Mode=TwoWay}"/>
+        <ComboBox Header="Group" 
+                  ItemsSource="{x:Bind Groups}"
+                  DisplayMemberPath="Name"
+                  SelectedValuePath="Id"
+                  SelectedValue="{x:Bind Connection.GroupId, Mode=TwoWay}"/>
+        <ComboBox Header="Credentials" 
+                  ItemsSource="{x:Bind Credentials}"
+                  DisplayMemberPath="Name"
+                  SelectedValuePath="Id"
+                  SelectedValue="{x:Bind Connection.CredentialId, Mode=TwoWay}"/>
+    </StackPanel>
+</ContentDialog>
