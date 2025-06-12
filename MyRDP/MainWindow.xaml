@@ -16,14 +16,14 @@
         <StackPanel Orientation="Horizontal" Padding="10">
             <Button Content="Add Group" Command="{x:Bind ViewModel.AddGroupCommand}"/>
             <Button Content="Edit Group" Command="{x:Bind ViewModel.EditGroupCommand}" 
-                    Margin="10,0" IsEnabled="{x:Bind ViewModel.IsGroupSelected, Mode=OneWay}"/>
+                    Margin="10,0"/>
             <Button Content="Delete Group" Command="{x:Bind ViewModel.DeleteGroupCommand}"
-                    IsEnabled="{x:Bind ViewModel.IsGroupSelected, Mode=OneWay}"/>
+                    />
             <Button Content="Add Connection" Command="{x:Bind ViewModel.AddConnectionCommand}" Margin="20,0,0,0"/>
             <Button Content="Edit Connection" Command="{x:Bind ViewModel.EditConnectionCommand}" 
-                    Margin="10,0" IsEnabled="{x:Bind ViewModel.IsConnectionSelected, Mode=OneWay}"/>
+                    />
             <Button Content="Delete Connection" Command="{x:Bind ViewModel.DeleteConnectionCommand}"
-                    IsEnabled="{x:Bind ViewModel.IsConnectionSelected, Mode=OneWay}"/>
+                    />
             <Button Content="Credentials" Command="{x:Bind ViewModel.ManageCredentialsCommand}" Margin="20,0,0,0"/>
         </StackPanel>
 

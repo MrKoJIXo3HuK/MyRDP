@@ -14,13 +14,13 @@ namespace MyRDP.ViewModels
         public ObservableCollection<Connection> Connections { get; } = new ObservableCollection<Connection>();
         public ObservableCollection<Credential> Credentials { get; } = new ObservableCollection<Credential>();
 
-        public ICommand AddGroupCommand { get; }
-        public ICommand EditGroupCommand { get; }
-        public ICommand DeleteGroupCommand { get; }
-        public ICommand AddConnectionCommand { get; }
-        public ICommand EditConnectionCommand { get; }
-        public ICommand DeleteConnectionCommand { get; }
-        public ICommand ManageCredentialsCommand { get; }
+        public RelayCommand AddGroupCommand { get; }
+        public RelayCommand EditGroupCommand { get; }
+        public RelayCommand DeleteGroupCommand { get; }
+        public RelayCommand AddConnectionCommand { get; }
+        public RelayCommand EditConnectionCommand { get; }
+        public RelayCommand DeleteConnectionCommand { get; }
+        public RelayCommand ManageCredentialsCommand { get; }
 
         public MainViewModel()
         {
@@ -43,11 +43,11 @@ namespace MyRDP.ViewModels
                 _selectedGroup = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(FilteredConnections));
-                OnPropertyChanged(nameof(IsGroupSelected));
+                // Уведомить команды об изменении состояния
+                EditGroupCommand.RaiseCanExecuteChanged();
+                DeleteGroupCommand.RaiseCanExecuteChanged();
             }
         }
-
-        public bool IsGroupSelected => SelectedGroup != null;
 
         private Connection _selectedConnection;
         public Connection SelectedConnection
@@ -58,11 +58,11 @@ namespace MyRDP.ViewModels
                 if (_selectedConnection == value) return;
                 _selectedConnection = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(IsConnectionSelected));
+                // Уведомить команды об изменении состояния
+                EditConnectionCommand.RaiseCanExecuteChanged();
+                DeleteConnectionCommand.RaiseCanExecuteChanged();
             }
         }
-
-        public bool IsConnectionSelected => SelectedConnection != null;
 
         public ObservableCollection<Connection> FilteredConnections =>
             new ObservableCollection<Connection>(Connections.Where(c =>
